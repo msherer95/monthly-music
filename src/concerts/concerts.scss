@@ -1,0 +1,170 @@
+html, body {
+	height: 100vh; 
+	width: 100vw;
+	min-height: 100vh;
+	margin-left: 0px;
+	margin-top: 0px;
+}
+
+body {
+	background-color: #85E3A2;
+	font-family: Lato !important;
+}
+
+.concert-wrapper {
+	position: relative;
+	width: 70vw;
+	height: 250px;
+	margin-left: 15vw;
+	transition: transform 300ms, opacity 400ms;
+}
+
+.concert-wrapper:nth-child(1) {
+	margin-top: 40px;
+}
+
+#title {
+	font-weight: 400;
+    color: #464646;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 25px;
+}
+
+#subtitle {
+	color: #464646;
+    text-align: center;
+    font-weight: 300;
+    font-size: 16px;
+    margin-top: -8px;
+}
+
+a {
+	width: 70vw;
+	height: 250px;
+	position: absolute;
+	overflow: hidden;
+	text-decoration: none;
+}
+
+a:link, a:hover, a:visited, a:active {
+	text-decoration: none;
+}
+
+h1 {
+	position: relative;
+	z-index: 2;
+}
+
+.concert-name {
+	text-align: center;
+	margin-top: 70px;
+	color: #F2F2F2;
+	width: 50vw;
+	margin-left: 10vw;
+}
+
+.concert-date-distance {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 186px;
+	margin-left: calc(35vw - 93px);
+	margin-top: -20px;
+
+	p {
+		font-size: 13px;
+		font-weight: 400;
+		color: #959494;
+	}
+}
+
+img {
+	position: absolute;
+	z-index: 1;
+	top: -10px;
+	height: auto;
+	width: calc(70vw + 5px);
+	filter: brightness(10%) blur(3px);
+	margin-left: -3px;
+	transition: filter 300ms;
+	transition-delay: 150ms;
+}
+
+.hover-shadow {
+	width: 65vw;
+    height: 252px;
+    background-color: black;
+    top: 5px;
+    position: absolute;
+    left: 8px;
+	filter: blur(5px);
+}
+
+.loader-wrapper {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin-top: 130px;
+
+	.loader-circle {
+		flex: 0 0 auto;
+		height: 100px;
+		width: 100px;
+		border-radius: 100px;
+		transition: transform 500ms;
+		animation-duration: 500ms;
+		animation-name: loaderCircle;
+		animation-iteration-count: infinite;
+		animation-direction: alternate;
+	}
+
+	#circle-left {
+		background-color: #446F9B;
+	}
+
+	#circle-middle {
+		background-color: #35A892;
+		margin-left: -30px;
+		animation-delay: 100ms;
+	}
+
+	#circle-right {
+		background-color: #278371;
+		margin-left: -30px;
+		animation-delay: 250ms;
+	}
+}
+
+@keyframes loaderCircle {
+	from {
+		transform: perspective(500px) translateZ(-50px);
+	}
+
+	to {
+		transform: perspective(500px) translateZ(40px) translateY(-20px);
+	}
+}
+
+.error-header {
+	text-align: center;
+	color: #464646;
+	font-weight: 400;
+	margin-top: 40px;
+}
+
+.error-text-general {
+	color: #464646;
+    width: 80vw;
+    margin-left: 10vw;
+    line-height: 30px;
+}
+
+.error-text-401, .error-text-429, .error-text-443 {
+	color: #464646;
+	text-align: center;
+}
+

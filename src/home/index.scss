@@ -1,0 +1,127 @@
+html, body {
+	width: 100vw;
+	height: 100vh;
+	margin-left: 0;
+	margin-top: 0;
+	min-height: 100vh;
+	max-height: 100vh;
+	font-family: Lato !important;
+}
+
+#index-wrap {
+	height: 100vh;
+	width: 100vw;
+	margin-top: 0 !important;
+	top: 0;
+	min-height: 100vh;
+	max-height: 100vh;
+	position: absolute;
+}
+
+form, h1, p {
+	position: relative;
+	z-index: 2;
+}
+
+h1 {
+	margin-top: calc(100vh - 250px);
+	margin-left: 107px;
+	width: 263px;
+	color: #85E3A2;
+	font-size: 40px;
+	font-weight: 400;
+}
+
+p {
+	margin-left: 84px;
+	width: 308px;
+	color: #85E3A2;
+	font-weight: 300;
+	margin-top: -15px;
+	letter-spacing: 1px;
+}
+
+input {
+	background-color: #85E3A2;
+	outline: none;
+	border: none;
+	border-radius: 100px;
+	height: 60px;
+	width: 180px;
+	font-size: 14px;
+	margin-left: 148px;
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+img {
+	height: auto;
+	width: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+}
+
+.loader-wrapper {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin-top: 70px;
+
+	.loader-circle {
+		flex: 0 0 auto;
+		height: 100px;
+		width: 100px;
+		border-radius: 100px;
+		transition: transform 500ms;
+		animation-duration: 500ms;
+		animation-name: loaderCircle;
+		animation-iteration-count: infinite;
+		animation-direction: alternate;
+	}
+
+	#circle-left {
+		background-color: #446F9B;
+	}
+
+	#circle-middle {
+		background-color: #35A892;
+		margin-left: -30px;
+		animation-delay: 100ms;
+	}
+
+	#circle-right {
+		background-color: #278371;
+		margin-left: -30px;
+		animation-delay: 250ms;
+	}
+}
+
+@keyframes loaderCircle {
+	from {
+		transform: perspective(500px) translateZ(-50px);
+	}
+
+	to {
+		transform: perspective(500px) translateZ(40px) translateY(-20px);
+	}
+}
+
+.home-loader {
+	background-color: #171717;
+	height: 100vh;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	position: absolute;
+}
+
+.home-loader-text {
+	position: relative;
+	margin-top: 200px;
+	text-align: center;
+	width: 100vw;
+	font-weight: 300;
+	margin-left: 0;
+}
