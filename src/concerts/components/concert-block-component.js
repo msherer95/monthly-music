@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 
+// each individual concert block component
 export class ConcertBlock extends React.Component {
 	constructor(props) {
 		super(props);
@@ -27,9 +28,9 @@ export class ConcertBlock extends React.Component {
 
 		let concert = this.props.concert;
 		let concertWrapperStyle = {
-			zIndex: this.state.focused ? "100" : "1",
-			transform: this.state.loaded ? this.state.focused ? "perspective(500px) translateZ(30px)" : "none" : "translateY(-30px)",
-			opacity: this.state.loaded ? 1 : 0
+			zIndex: this.state.focused ? "100" : "1", // move to front
+			transform: this.state.loaded ? this.state.focused ? "perspective(500px) translateZ(30px)" : "none" : "translateY(-30px)", // move to front if focused, move up if NOT loaded
+			opacity: this.state.loaded ? 1 : 0 // show when loaded
 		}
 
 		let imageStyle = {

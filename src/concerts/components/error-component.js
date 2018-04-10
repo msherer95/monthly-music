@@ -1,6 +1,8 @@
 import React from 'react';
 
+// different error screens based on error type
 export const Error = (props) => {
+
 	if (props.error == 429) {
 		return (<div>
 				<h1 className="error-header">Sorry! We've reached our ticketmaster call limit.</h1>

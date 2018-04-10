@@ -3,6 +3,19 @@ import React from 'react';
 export class Options extends React.Component {
 	constructor(props) {
 		super(props);
+
+		// keeps track of validation state of each input
+		// possible states: null, accept, reject, leftEmpty (off-focused), typing, typing-accept, typing-reject (on-focus)
+
+		/* 
+			NULL: input has not been interacted with yet
+			ACCEPT: input validated
+			REJECT: input left not validated after typing and clicking on another input, or after input was succesfully validated then changed to be not validated
+			LEFTEMPTY: input was clicked on, but left empty
+			TYPING: neutral typing state -- only interaction so far has been clicking on input box (state was just NULL)
+			TYPING-ACCEPT: input validated while input box is still in focus
+			TYPING-REJECT: same as REJECT, but while input box is still in focus
+		*/
 		this.state = {
 			location: null, 
 			radius: null, 
@@ -16,9 +29,10 @@ export class Options extends React.Component {
 		this.validateRadiusAndMonth = this.validateRadiusAndMonth.bind(this);
 	}
 
+	// set of conditional styles based on validation state of ANY input
 	styleMaker(inputState) {
 		let rejectColor = "#ff6961";
-		let acceptColor = "#446F9B";
+		let acceptColor = "#446F9B"; // for both accept and neutral states
 		let labelTransform;
 		let labelColor;
 		let labelFontWeight;
@@ -120,25 +134,28 @@ export class Options extends React.Component {
 		return inputStyles
 	}
 
+	// match either 5 digit or (5 digit)-(4 digit) zipcode
 	validateZipcode(zipcode) {
 		return zipcode.match(/(^\d{5}$)|(^\d{5}-\d{4}$)/) ? true : false;
 	}
 
+	// make sure radius and month are digits-only
 	validateRadiusAndMonth(value) {
 		return value.match(/^\d+$/) ? true : false;
 	}
 
 	handleFocus(e) {
-		let inputType = e.target.name;
-		let inputState = eval('this.state.'+inputType);
+		let inputType = e.target.name; // zipcode, location, radius
+		let inputState = this.state[inputType]; // input's current validation state
 		
+		// reject input if it's non-empty and previous validation state is non-null
 		if (e.target.value == "") {
 			if (inputState == null) {
 				this.setState({[inputType]: 'typing'})
 			} else {
 				this.setState({[inputType]: 'typing-reject'})
 			}
-		} else {
+		} else { // validate non-empty input
 			if (e.target.name == 'location' && this.validateZipcode(e.target.value)) {
 				this.setState({[inputType]: 'typing-accept'})
 			} else if (e.target.name == 'location' && !this.validateZipcode(e.target.value)) {
@@ -152,11 +169,15 @@ export class Options extends React.Component {
 	}
 
 	handleFocusOut(e) {
-		let inputType = e.target.name;
+		let inputType = e.target.name; // zipcode, location, radius
 		
+		// set state to 'leftEmpty' if input is empty 
 		if (e.target.value == "") {
 			this.setState({[inputType]: 'leftEmpty'})
-		} else {
+
+			// FIXME: Validation is not needed here! We can just convert validation state 
+			// directly from previous typing validation state.
+		} else { // validate non-empty input
 			if (e.target.name == 'location' && this.validateZipcode(e.target.value)) {
 				this.setState({[inputType]: 'accept'})
 			} else if (e.target.name == 'location' && !this.validateZipcode(e.target.value)) {
@@ -170,8 +191,8 @@ export class Options extends React.Component {
 	}
 
 	handleType(e) {
-		let inputType = e.target.name;
-		let inputState = eval('this.state.'+inputType);
+		let inputType = e.target.name; // zipcode, location, radius
+		let inputState = this.state[inputType]; // input's current validation state
 	
 		if (e.target.name == 'location' && this.validateZipcode(e.target.value)) {
 			this.setState({[inputType]: 'typing-accept'})
@@ -186,13 +207,17 @@ export class Options extends React.Component {
 
 	render() {
 
+		// determine styles for each input based on validation state
 		let locationStyle = this.styleMaker(this.state.location);
 		let radiusStyle = this.styleMaker(this.state.radius);
 		let monthsStyle = this.styleMaker(this.state.numMonths);
 
+		// check which fields are validated
 		let locationValidated = this.state.location == 'accept' || this.state.location == 'typing-accept'
 		let radiusValidated = this.state.radius == 'accept' || this.state.radius == 'typing-accept'
 		let numMonthsValidated = this.state.numMonths == 'accept' || this.state.numMonths == 'typing-accept'
+
+		// enable submit button if all fields are validated
 		let btnEnabled = locationValidated && radiusValidated && numMonthsValidated;
 
 		return (

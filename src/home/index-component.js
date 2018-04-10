@@ -5,7 +5,7 @@ import {Loader} from '../concerts/components/loader-component';
 export class Index extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {loaded: false, loaderAction: 'bounce'};
+		this.state = {loaded: false};
 		this.handleLoad = this.handleLoad.bind(this);
 	}
 
@@ -14,6 +14,7 @@ export class Index extends React.Component {
 	}
 
 	render() {
+		// put loading screen on top of landing page while image is loading, then remove loading screen
 		const homeScreen = (
 			<div>
 				<div className="home-loader" style={{display: this.state.loaded ? 'none' : 'block'}}>

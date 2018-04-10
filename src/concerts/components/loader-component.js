@@ -1,5 +1,6 @@
 import React from 'react';
 
+// loading screen with 3 bouncing circles
 export class Loader extends React.Component {
 
 	render() {
