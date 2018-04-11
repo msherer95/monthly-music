@@ -66,7 +66,6 @@ routes.get('/options', (req, res) => {
 		// request access_token and refresh_token from spotify for all other requests
 		request.post(authOptions, (error, response, body) => {
 			if (!error && response.statusCode === 200) {
-
 				access_token = body.access_token;
 				let refresh_token = body.refresh_token;
 
@@ -80,7 +79,6 @@ routes.get('/options', (req, res) => {
 
 				// get user_id for future requests and send options page
 				request.get(options, (error, response, body) => {
-
 					res.sendFile(__dirname+'/dist/options.html');
 					user_id = body.id;
 				});
@@ -94,7 +92,7 @@ routes.get('/options', (req, res) => {
 	}
 });
 
-// get refresh token from spotify to maintain session
+// get refresh token from spotify to maintain session, Spotify boilerplate
 routes.get('/refresh_token', (req, res) => {
 
 	let refresh_token = req.query.refresh_token;
@@ -149,9 +147,9 @@ let info = {
 
 // get concerts page 
 routes.get('/concerts', (req, res) => {
-	info.location = req.query.location.toString();
-	info.radius = req.query.radius.toString();
-	info.numMonths = req.query.numMonths.toString();
+	info.location = req.query.location.toString(); // save location 
+	info.radius = req.query.radius.toString(); // save radius
+	info.numMonths = req.query.numMonths.toString(); // save numMonths
 	res.sendFile(__dirname+'/dist/concerts.html')
 })
 
