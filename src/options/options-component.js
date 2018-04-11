@@ -147,45 +147,40 @@ export class Options extends React.Component {
 	handleFocus(e) {
 		let inputType = e.target.name; // zipcode, location, radius
 		let inputState = this.state[inputType]; // input's current validation state
-		
-		// reject input if it's non-empty and previous validation state is non-null
-		if (e.target.value == "") {
-			if (inputState == null) {
-				this.setState({[inputType]: 'typing'})
-			} else {
-				this.setState({[inputType]: 'typing-reject'})
-			}
-		} else { // validate non-empty input
-			if (e.target.name == 'location' && this.validateZipcode(e.target.value)) {
-				this.setState({[inputType]: 'typing-accept'})
-			} else if (e.target.name == 'location' && !this.validateZipcode(e.target.value)) {
-				this.setState({[inputType]: 'typing-reject'})
-			} else if(e.target.name != 'location' && this.validateRadiusAndMonth(e.target.value)) {
-				this.setState({[inputType]: 'typing-accept'})
-			} else if(e.target.name != 'location' && !this.validateRadiusAndMonth(e.target.value)) {
-				this.setState({[inputType]: 'typing-reject'})
-			}
+
+		switch (inputState) {
+			case null:
+				this.setState({[inputType]: 'typing'});
+				break;
+			case 'accept':
+				this.setState({[inputType]: 'typing-accept'});
+				break;
+			case 'reject':
+				this.setState({[inputType]: 'typing-reject'});
+				break;
+			case 'leftEmpty':
+				this.setState({[inputType]: 'typing-reject'});
+				break;
 		}
 	}
 
 	handleFocusOut(e) {
 		let inputType = e.target.name; // zipcode, location, radius
-		
-		// set state to 'leftEmpty' if input is empty 
-		if (e.target.value == "") {
-			this.setState({[inputType]: 'leftEmpty'})
+		let inputState = this.state[inputType]; // input's current validation state
 
-			// FIXME: Validation is not needed here! We can just convert validation state 
-			// directly from previous typing validation state.
-		} else { // validate non-empty input
-			if (e.target.name == 'location' && this.validateZipcode(e.target.value)) {
-				this.setState({[inputType]: 'accept'})
-			} else if (e.target.name == 'location' && !this.validateZipcode(e.target.value)) {
-				this.setState({[inputType]: 'reject'})
-			} else if(e.target.name != 'location' && this.validateRadiusAndMonth(e.target.value)) {
-				this.setState({[inputType]: 'accept'})
-			} else if(e.target.name != 'location' && !this.validateRadiusAndMonth(e.target.value)) {
-				this.setState({[inputType]: 'reject'})
+		if (e.target.value == "") {
+			this.setState({[inputType]: 'leftEmpty'});
+		} else {
+			switch (inputState) {
+				case 'typing':
+					this.setState({[inputType]: 'reject'});
+					break;
+				case 'typing-accept':
+					this.setState({[inputType]: 'accept'});
+					break;
+				case 'typing-reject':
+					this.setState({[inputType]: 'reject'});
+					break;
 			}
 		}
 	}
