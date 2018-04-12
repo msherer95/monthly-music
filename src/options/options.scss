@@ -25,6 +25,7 @@ html, body {
 body {
 	background-color: #85E3A2;
 	font-family: Lato !important;
+	position: absolute;
 }
 
 .options-wrap {
@@ -110,6 +111,9 @@ form {
 		margin-top: 40px;
 		cursor: pointer;
 		transition: transform 300ms;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;		
 
 		@include for-mobile {
 			margin-left: calc(45vw - 100px);

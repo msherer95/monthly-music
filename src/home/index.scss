@@ -83,6 +83,9 @@ input {
 	margin-top: 20px;
 	cursor: pointer;
 	transition: transform 300ms;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
 
 	@include for-mobile {
 		margin-left: calc(50vw - 90px);
