@@ -137,18 +137,18 @@ img {
 
 	#circle-left {
 		background-color: #446F9B;
+		animation-delay: -250ms;
 	}
 
 	#circle-middle {
 		background-color: #35A892;
 		margin-left: -30px;
-		animation-delay: 100ms;
+		animation-delay: -100ms;
 	}
 
 	#circle-right {
 		background-color: #278371;
 		margin-left: -30px;
-		animation-delay: 250ms;
 	}
 }
 
