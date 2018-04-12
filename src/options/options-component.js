@@ -19,7 +19,7 @@ export class Options extends React.Component {
 		this.state = {
 			location: null, 
 			radius: null, 
-			numMonths: null
+			numMonths: null,
 		}
 		this.styleMaker = this.styleMaker.bind(this);
 		this.handleFocus = this.handleFocus.bind(this);
@@ -58,7 +58,7 @@ export class Options extends React.Component {
 				labelTransform = "translateY(-24px) scale(0.7)";
 				labelFontWeight = "400";
 				underlineOpacity = 1;
-				underlineTransform = "scaleX(150)";
+				underlineTransform = document.body.clientWidth<480 ? "scaleX("+ document.body.clientWidth*0.7/2+")" : "scaleX(150)";
 				underlineColor = acceptColor;
 				descriptionOpacity = 1;
 				descriptionTransform = "none";
@@ -68,7 +68,7 @@ export class Options extends React.Component {
 				labelTransform = "translateY(-24px) scale(0.7)";
 				labelFontWeight = "400";
 				underlineOpacity = 1;
-				underlineTransform = "scaleX(150)";
+				underlineTransform = document.body.clientWidth<480 ? "scaleX("+ document.body.clientWidth*0.7/2+")" : "scaleX(150)";
 				underlineColor = acceptColor;
 				descriptionOpacity = 1;
 				descriptionTransform = "none";
@@ -78,7 +78,7 @@ export class Options extends React.Component {
 				labelTransform = "translateY(-24px) scale(0.7)";
 				labelFontWeight = "400";
 				underlineOpacity = 1;
-				underlineTransform = "scaleX(150)";
+				underlineTransform = document.body.clientWidth<480 ? "scaleX("+ document.body.clientWidth*0.7/2+")" : "scaleX(150)";
 				underlineColor = rejectColor;
 				descriptionOpacity = 1;
 				descriptionTransform = "none";
@@ -98,7 +98,7 @@ export class Options extends React.Component {
 				labelTransform = "translateY(-24px) scale(0.7)";
 				labelFontWeight = "400";
 				underlineOpacity = 1;
-				underlineTransform = "scaleX(150)";
+				underlineTransform = document.body.clientWidth<480 ? "scaleX("+ document.body.clientWidth*0.7/2+")" : "scaleX(150)";
 				underlineColor = rejectColor;
 				descriptionOpacity = 0;
 				descriptionTransform = "translateY(-10px)";
@@ -108,7 +108,7 @@ export class Options extends React.Component {
 				labelTransform = "none";
 				labelFontWeight = "300";
 				underlineOpacity = 1;
-				underlineTransform = "scaleX(150)";
+				underlineTransform = document.body.clientWidth<480 ? "scaleX("+ document.body.clientWidth*0.7/2+")" : "scaleX(150)";
 				underlineColor = rejectColor;
 				descriptionOpacity = 0;
 				descriptionTransform = "translateY(-10px)";
@@ -238,7 +238,7 @@ export class Options extends React.Component {
 							<p className="label" style={monthsStyle.labelStyle}>Months Ahead</p>
 							<p className="description" style={monthsStyle.descriptionStyle}>How many months in the future?</p>
 						</div>
-						{btnEnabled ? <input type="submit" value="Search" /> : <input type="submit" value="Search" style={{opacity: "0.2"}} disabled />}
+						{btnEnabled ? <input className="btn-enabled" type="submit" value="Search" /> : <input type="submit" value="Search" style={{opacity: "0.2"}} disabled />}
 					</form>
 				</div>
 				<div className="options-shadow"></div>

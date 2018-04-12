@@ -43,7 +43,7 @@ module.exports = {
     ],
     module: {
         rules: [
-            {
+			{
                 test: /\.css$/,
                 use: [
                     'style-loader',
@@ -75,15 +75,6 @@ module.exports = {
                     }
                 }
 			},
-			{
-				test: /\.csv$/,
-				loader: 'csv-loader',
-				options: {
-				  dynamicTyping: true,
-				  header: true,
-				  skipEmptyLines: true
-				}
-			}
         ]
     },
 };

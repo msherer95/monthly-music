@@ -1,9 +1,25 @@
+
+$mobile-width: 480px;
+$tablet-width: 768px;
+$desktop-sm-width: 960px;
+
+@mixin for-tablet {
+    @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-sm-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin for-mobile {
+    @media (max-width: #{$mobile-width}) {
+        @content;
+    }
+}
+
 html, body {
 	height: 100vh; 
 	width: 100vw;
 	min-height: 100vh;
-	margin-left: 0px;
-	margin-top: 0px;
+	margin: 0px;
 }
 
 body {
@@ -17,6 +33,12 @@ body {
 	height: 250px;
 	margin-left: 15vw;
 	transition: transform 300ms, opacity 400ms;
+
+	@include for-mobile {
+		width: 100vw;
+		height: 200px;
+		margin-left: 0;
+	}
 }
 
 .concert-wrapper:nth-child(1) {
@@ -45,6 +67,12 @@ a {
 	position: absolute;
 	overflow: hidden;
 	text-decoration: none;
+
+	@include for-mobile {
+		width: 100vw;
+		height: 200px;
+		margin-left: 0;
+	}
 }
 
 a:link, a:hover, a:visited, a:active {
@@ -62,6 +90,13 @@ h1 {
 	color: #F2F2F2;
 	width: 50vw;
 	margin-left: 10vw;
+
+	@include for-mobile {
+		font-size: 21px;
+		width: 80vw;
+		margin-left: 10vw;
+		margin-top: 50px;
+	}
 }
 
 .concert-date-distance {
@@ -73,6 +108,10 @@ h1 {
 	width: 186px;
 	margin-left: calc(35vw - 93px);
 	margin-top: -20px;
+
+	@include for-mobile {
+		margin-left: calc(50vw - 93px);
+	}
 
 	p {
 		font-size: 13px;
@@ -91,6 +130,12 @@ img {
 	margin-left: -3px;
 	transition: filter 300ms;
 	transition-delay: 150ms;
+
+	@include for-mobile {
+		width: 105vw;
+		margin-left: -2.5vw;
+		top: -4px;
+	}
 }
 
 .hover-shadow {
@@ -101,6 +146,10 @@ img {
     position: absolute;
     left: 8px;
 	filter: blur(5px);
+
+	@include for-mobile {
+		display: none;
+	}
 }
 
 .loader-wrapper {

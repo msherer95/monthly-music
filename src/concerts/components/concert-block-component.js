@@ -27,14 +27,28 @@ export class ConcertBlock extends React.Component {
 	render() {
 
 		let concert = this.props.concert;
+		let concertWrapperTransform;
+		let concertWrapperZIndex;
+		let imageFilter;
+
+		if (document.body.clientWidth >= 480) {
+			concertWrapperTransform = this.state.loaded ? this.state.focused ? "perspective(500px) translateZ(30px)" : "none" : "translateY(-30px)"; // move to front if focused, move up if NOT loaded
+			concertWrapperZIndex = this.state.focused ? "100" : "1"; // move to front
+			imageFilter = this.state.focused ? "brightness(30%)" : "brightness(10%) blur(5px)";
+		} else {
+			concertWrapperTransform = "perspective(500px) translateZ(50px)";
+			concertWrapperZIndex = "1";
+			imageFilter = " brightness(20%) blur(3px)";
+		}
+
 		let concertWrapperStyle = {
-			zIndex: this.state.focused ? "100" : "1", // move to front
-			transform: this.state.loaded ? this.state.focused ? "perspective(500px) translateZ(30px)" : "none" : "translateY(-30px)", // move to front if focused, move up if NOT loaded
+			zIndex: concertWrapperZIndex,
+			transform: concertWrapperTransform,
 			opacity: this.state.loaded ? 1 : 0 // show when loaded
 		}
 
 		let imageStyle = {
-			filter: this.state.focused ? "brightness(30%)" : "brightness(10%) blur(5px)",
+			filter: imageFilter
 		}
 
 		return (

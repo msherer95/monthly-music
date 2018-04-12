@@ -1,8 +1,24 @@
+
+$mobile-width: 480px;
+$tablet-width: 768px;
+$desktop-sm-width: 960px;
+
+@mixin for-tablet {
+    @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-sm-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin for-mobile {
+    @media (max-width: #{$mobile-width}) {
+        @content;
+    }
+}
+
 html, body {
 	width: 100vw;
 	height: 100vh;
-	margin-left: 0;
-	margin-top: 0;
+	margin: 0;
 	min-height: 100vh;
 	max-height: 100vh;
 	font-family: Lato !important;
@@ -30,6 +46,14 @@ h1 {
 	color: #85E3A2;
 	font-size: 40px;
 	font-weight: 400;
+
+	@include for-mobile {
+		width: 100vw;
+		height: 48px;
+		text-align: center;
+		margin-left: 0;
+		margin-top: calc(50vh - 50px);
+	}
 }
 
 p {
@@ -39,6 +63,12 @@ p {
 	font-weight: 300;
 	margin-top: -15px;
 	letter-spacing: 1px;
+
+	@include for-mobile {
+		width: 100vw;
+		text-align: center;
+		margin-left: 0;
+	}
 }
 
 input {
@@ -52,6 +82,15 @@ input {
 	margin-left: 148px;
 	margin-top: 20px;
 	cursor: pointer;
+	transition: transform 300ms;
+
+	@include for-mobile {
+		margin-left: calc(50vw - 90px);
+	}
+}
+
+input:hover {
+	transform: perspective(500px) translateZ(40px);
 }
 
 img {
@@ -60,6 +99,15 @@ img {
 	position: fixed;
 	top: 0px;
 	left: 0px;
+
+	@include for-tablet {
+		left: -400px;
+	}
+
+	@include for-mobile {
+		left: -400px;
+		filter: brightness(20%);
+	}
 }
 
 .loader-wrapper {
@@ -124,4 +172,8 @@ img {
 	width: 100vw;
 	font-weight: 300;
 	margin-left: 0;
+
+	@include for-mobile {
+		font-size: 21px;
+	}
 }

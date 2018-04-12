@@ -21,7 +21,6 @@ $(document).ready(() => {
 	*/
 
 	const img = document.getElementById('background-image');
-	let imgProps = img.getBoundingClientRect();
 
 	// scale image on load based on initial screen dimensions
 	if (document.body.clientWidth/document.body.clientHeight < 1.5) {
