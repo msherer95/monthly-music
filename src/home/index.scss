@@ -94,7 +94,9 @@ input {
 }
 
 input:hover {
-	transform: perspective(500px) translateZ(40px);
+	@media (min-width: 768px) {
+		transform: perspective(500px) translateZ(40px);
+	}
 }
 
 img {
