@@ -174,17 +174,23 @@ img {
 	#circle-left {
 		background-color: #446F9B;
 		animation-delay: -250ms;
+		z-index: 5;
+		position: relative;
 	}
 
 	#circle-middle {
 		background-color: #35A892;
 		margin-left: -30px;
 		animation-delay: -100ms;
+		z-index: 4;
+		position: relative;
 	}
 
 	#circle-right {
 		background-color: #278371;
 		margin-left: -30px;
+		z-index: 3;
+		position: relative;
 	}
 }
 
