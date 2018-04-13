@@ -122,14 +122,14 @@ routes.get('/refresh_token', (req, res) => {
 routes.get('/getConcerts', (req, res) => {
 
 	// get lat/lng info from mapquest for user-entered zipcode 
-	request.get('https://www.mapquestapi.com/geocoding/v1/address?key='+mapquestCreds.consumer_key+'&inFormat=kvp&outFormat=json&location='+info.location+'&thumbMaps=false')
+	request.get('https://www.mapquestapi.com/geocoding/v1/address?key='+mapquestCreds.consumer_key+'&inFormat=kvp&outFormat=json&location='+req.query.location+'&thumbMaps=false')
 		.then(data => {
 			let lat = JSON.parse(data).results[0].locations[0].latLng.lat.toString(); // extract latitude
 			let lng = JSON.parse(data).results[0].locations[0].latLng.lng.toString(); // extract longitude
 			let location = lat+','+lng; // convert to comma separated string for ticketmaster requests
 
 			// request concerts for all spotify artists -- returns Promise with ticketmaster concert data
-			spotify.getAllPlaylists(user_id, access_token, location, info.radius, info.numMonths)
+			spotify.getAllPlaylists(user_id, access_token, location, req.query.radius, req.query.numMonths)
 				.then(concerts => {
 					let allConcerts = ticketmaster.extractConcerts(concerts); // cleanup concert data, transform into array of objects
 					res.send(allConcerts); // respond with concert data
