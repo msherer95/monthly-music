@@ -13,6 +13,8 @@ export class App extends React.Component {
 
 	// get concerts data once App is mounted
 	componentDidMount() {
+		let urlParams = new URLSearchParams(window.location.search);
+		console.log('location: '+urlParams.get('location'));
 		$.get('/getConcerts', (data) => {
 			console.log(data);
 			this.setState({concerts: data}) // change state.concerts to concerts array
