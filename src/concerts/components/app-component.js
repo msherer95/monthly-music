@@ -43,6 +43,8 @@ export class App extends React.Component {
 			toBeRendered = <Error error={443} />
 		} else if (this.state.concerts.error) {
 			toBeRendered = <Error error={500} />
+		} else if (this.state.concerts == {}) {
+			toBeRendered = <Error error={600} />
 		} else { // display concerts if concerts data is succesfully fetched
 			toBeRendered = (<div>
 				<h1 id="title">Upcoming Concerts</h1>

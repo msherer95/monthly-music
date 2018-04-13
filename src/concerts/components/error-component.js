@@ -18,6 +18,10 @@ export const Error = (props) => {
 			<h1 className="error-header">Sorry! We couldn't connect to ticketmaster.</h1>
 			<p className="error-text-443">Try refreshing the page. If this doesn't work, wait a couple minutes, then try again.</p>
 		</div> )
+	} else if (props.error == 600) {
+		return (<div>
+			<h1 className="error-header">You don't have any upcoming concerts</h1>
+		</div> )
 	} else {
 		return (<div>
 				<h1 className="error-header">Sorry! We encountered an error.</h1>
