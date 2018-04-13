@@ -13,10 +13,10 @@ export class App extends React.Component {
 
 	// get concerts data once App is mounted
 	componentDidMount() {
-		let urlParams = new URLSearchParams(window.location.search);
-		let location = urlParams.get('location');
-		let radius = urlParams.get('radius');
-		let numMonths = urlParams.get('numMonths');
+		let urlParams = new URLSearchParams(window.location.search); // query parameters
+		let location = urlParams.get('location'); // location parameter
+		let radius = urlParams.get('radius'); // radius parameter
+		let numMonths = urlParams.get('numMonths'); // numMonths parameter
 		let url = '/getConcerts?location=' + location + "&radius=" + radius + "&numMonths=" + numMonths;
 		$.get(url, (data) => {
 			console.log(data);

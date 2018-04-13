@@ -127,7 +127,7 @@ routes.get('/getConcerts', (req, res) => {
 			let lat = JSON.parse(data).results[0].locations[0].latLng.lat.toString(); // extract latitude
 			let lng = JSON.parse(data).results[0].locations[0].latLng.lng.toString(); // extract longitude
 			let location = lat+','+lng; // convert to comma separated string for ticketmaster requests
-
+			
 			// request concerts for all spotify artists -- returns Promise with ticketmaster concert data
 			spotify.getAllPlaylists(user_id, access_token, location, req.query.radius, req.query.numMonths)
 				.then(concerts => {
@@ -139,17 +139,8 @@ routes.get('/getConcerts', (req, res) => {
 		})
 })
 
-let info = {
-	location: null,
-	radius: null,
-	numMonths: null
-}
-
 // get concerts page 
 routes.get('/concerts', (req, res) => {
-	info.location = req.query.location.toString(); // save location 
-	info.radius = req.query.radius.toString(); // save radius
-	info.numMonths = req.query.numMonths.toString(); // save numMonths
 	res.sendFile(__dirname+'/dist/concerts.html')
 })
 
