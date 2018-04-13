@@ -132,6 +132,7 @@ routes.get('/getConcerts', (req, res) => {
 			spotify.getAllPlaylists(user_id, access_token, location, req.query.radius, req.query.numMonths)
 				.then(concerts => {
 					let allConcerts = ticketmaster.extractConcerts(concerts); // cleanup concert data, transform into array of objects
+					console.log('allConcerts: '+allConcerts);
 					res.send(allConcerts); // respond with concert data
 				}, reason => { // send error instead if error occurs
 					res.send(reason);
